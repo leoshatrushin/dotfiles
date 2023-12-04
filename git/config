@@ -1,0 +1,5 @@
+[core]
+	pager = cat
+[user]
+	name = leoshatrushin
+	email = leoshatrushin@gmail.com
