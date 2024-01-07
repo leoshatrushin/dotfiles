@@ -227,7 +227,7 @@
                         ]
                     },
                     {
-                        "description": "Change ctrl+i to ctrl+shift+i",
+                        "description": "Change ctrl+i,j to ctrl+shift+i,j",
                         "manipulators": [
                             {
                                 "from": {
@@ -241,6 +241,26 @@
                                 "to": [
                                     {
                                         "key_code": "i",
+                                        "modifiers": [
+                                            "fn",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "j",
                                         "modifiers": [
                                             "fn",
                                             "left_shift"

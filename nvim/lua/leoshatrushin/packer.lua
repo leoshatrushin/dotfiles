@@ -49,7 +49,7 @@ return require('packer').startup(function(use)
     use('FelipeLema/cmp-async-path')
     use('Issafalcon/lsp-overloads.nvim')
 
-    use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
+    -- use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
     use {'github/copilot.vim'}
 
     use('tpope/vim-commentary')

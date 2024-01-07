@@ -116,7 +116,11 @@ if [[ -n $KITTY_INSTALLATION_DIR ]]; then
     unfunction kitty-integration
 fi
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH=$PATH:/Users/leoshatrushin/Library/Python/3.9/bin
+export PATH=$PATH:$HOME/go/bin
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
@@ -153,7 +157,10 @@ bindkey '^[n' tmux_new_window_with_nvim # tmux cmd+n
 bindkey -s '^[[102;9u' 'tmux-sessionizer\n' # kitty cmd+f
 
 alias tp="trash-put"
-alias la='ls -A'
+alias la='ls -AL'
+alias get_idf='. $HOME/esp/esp-idf/export.sh'
+alias run_nginx='sudo /opt/homebrew/opt/nginx/bin/nginx -g daemon\ off\;'
+export IDF_TARGET=esp32
 
 # defer nvm initialization until first use to speed up shell startup
 export NVM_DIR="$HOME/.nvm"
@@ -182,3 +189,4 @@ npx() {
 	npx "$@"
 }
 
+print -n '\033[5 q' # blink cursor

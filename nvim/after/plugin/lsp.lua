@@ -41,10 +41,20 @@ capabilities = vim.tbl_deep_extend('force', capabilities, {
   },
 })
 
+local clangd_bin = 'clangd'
+local ESP_dirs = {
+    [vim.fn.expand('$HOME') .. '/dev/EnergyGraphs'] = true,
+    [vim.fn.expand('$HOME') .. '/dev/EnergyMonitor/esp'] = true,
+}
+local esp_dir = vim.fn.expand('$HOME') .. '/esp'
+if ESP_dirs[vim.fn.getcwd()] or string.sub(vim.fn.getcwd(), 1, string.len(esp_dir)) == esp_dir then
+    clangd_bin = vim.fn.expand('$HOME') .. '/devtools/esp-clang/bin/clangd'
+end
+
 require('lspconfig').clangd.setup{
   capabilities = capabilities,
 	cmd = {
-		"clangd",
+		clangd_bin,
 		"--background-index",
 		"--pch-storage=memory",
 		"--clang-tidy",
@@ -96,7 +106,7 @@ lsp.on_attach(function(client, bufnr)
 				next_signature = "<M-o>",
                 previous_parameter = "<M-j>",
 				next_parameter = "<M-k>",
-				close_signature = "<M-s>"
+				close_signature = "<M-b>"
 			},
 			display_automatically = false,
 		})
@@ -139,7 +149,7 @@ cmp.setup({
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'cmp_tabnine' },
+      -- { name = 'cmp_tabnine' },
       { name = 'nvim_lsp_signature_help'},
       { name = 'nvim_lua' },
       { name = 'async_path'},

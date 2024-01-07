@@ -3,3 +3,5 @@
 [user]
 	name = leoshatrushin
 	email = leoshatrushin@gmail.com
+[http]
+	postBuffer = 524288000

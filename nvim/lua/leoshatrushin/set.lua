@@ -33,7 +33,7 @@ vim.opt.isfname:append("@-@") -- allow @ in filenames
 
 vim.opt.updatetime = 50 -- trigger idle events after 50ms
 
-vim.opt.colorcolumn = "80" -- 80 char ruler
+vim.opt.colorcolumn = "120" -- 80 char ruler
 
 vim.opt.inccommand = "nosplit" -- live preview of :s
 

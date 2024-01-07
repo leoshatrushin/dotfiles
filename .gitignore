@@ -3,4 +3,4 @@ htop/
 github-copilot/
 karabiner/automatic_backups/
 tmux/plugins/
-nvim/plugin/
+packer_compiled.lua

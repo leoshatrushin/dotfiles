@@ -65,31 +65,44 @@ function M.copy_diagnostic_to_clipboard()
 end
 
 function M.smartRun()
+    vim.api.nvim_command("silent w")
     local filetype = vim.bo.filetype
     local state_home = vim.fn.getenv("XDG_STATE_HOME") or vim.fn.expand("$HOME/.local/state")
     local outfile = state_home .. "/nvim/run.out"
     local redirect = " 2>&1 | tee " .. outfile
     local cmd
     if filetype == "javascript" then
-        cmd = "!node " .. vim.fn.expand("%")
+        cmd = "node " .. vim.fn.expand("%")
     elseif filetype == "typescript" then
-        cmd = "!ts-node " .. vim.fn.expand("%")
+        cmd = "ts-node " .. vim.fn.expand("%")
     elseif filetype == "c" then
         local filepathModifier = ""
         if not string.find(vim.fn.expand("%"), "/") then
             filepathModifier = "./"
         end
-        cmd = "!gcc " .. vim.fn.expand("%") .. " -o " .. vim.fn.expand("%:r")
+        cmd = "gcc " .. vim.fn.expand("%") .. " -o " .. vim.fn.expand("%:r")
             .. " && " .. filepathModifier .. vim.fn.expand("%:r")
     elseif filetype == "lua" then
-        cmd = "!lua " .. vim.fn.expand("%")
+        cmd = "lua " .. vim.fn.expand("%")
     elseif filetype == "python" then
-        cmd = "!python3 " .. vim.fn.expand("%")
+        cmd = "python3 " .. vim.fn.expand("%")
 	elseif filetype == "java" then
-		cmd = "!javac " .. vim.fn.expand("%") .. "&& java " .. vim.fn.expand("%:r")
+		cmd = "javac " .. vim.fn.expand("%") .. "&& java " .. vim.fn.expand("%:r")
     end
     cmd = cmd .. redirect
-    vim.cmd(cmd)
+    local output = vim.fn.system(cmd)
+    if string.sub(output, #output, #output) == "\n" then
+        output = string.sub(output, 1, #output - 1)
+    end
+    print(output)
+end
+
+function M.smart_quit()
+    if vim.bo.modified then
+        vim.api.nvim_command("silent wq")
+    else
+        vim.api.nvim_command("silent q")
+    end
 end
 
 return M

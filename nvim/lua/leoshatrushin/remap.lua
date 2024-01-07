@@ -9,7 +9,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "o", "0o")
 vim.keymap.set("n", "O", "0O")
 
-vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "Q", [[<Cmd>lua require('leoshatrushin.functions').smart_quit()<CR>]])
 
 vim.keymap.set("n", "H", "^")
 vim.keymap.set("v", "H", "^")
@@ -18,8 +18,6 @@ vim.keymap.set("v", "L", "$")
 
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "M", "$mzT,i<CR><Esc>0`z")
-
-vim.keymap.set("n", "'", "`")
 
 vim.keymap.set('n', '<leader>eo', '<cmd>lua vim.diagnostic.open_float()<CR>')
 -- The following command requires plug-ins "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim", and optionally "kyazdani42/nvim-web-devicons" for icon support
@@ -59,13 +57,17 @@ vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
 vim.keymap.set("n", "<leader>x", ":silent !chmod +x %<CR>")
 
-vim.keymap.set("n", "<leader>ce", ":Copilot enable<CR>")
-vim.keymap.set("n", "<leader>cd", ":Copilot disable<CR>")
+vim.keymap.set("n", "<leader>c", ":silent !cat ~/.local/state/nvim/run.out | pbcopy<CR>")
+
+-- vim.keymap.set("n", "<leader>gce", ":Copilot enable<CR>")
+-- vim.keymap.set("n", "<leader>gcd", ":Copilot disable<CR>")
+vim.keymap.set("n", "<leader>g", "<cmd>G<CR>")
+vim.keymap.set("n", "<leader>l", "<cmd>G log<CR>")
 
 vim.keymap.set("n", "<leader>m", function() vim.cmd('silent !tmux neww man ' .. vim.fn.expand('<cword>')) end)
 
-vim.keymap.set("n", "<M-s>", "<cmd>LspOverloadsSignature<CR>")
-vim.keymap.set("i", "<M-s>", "<cmd>LspOverloadsSignature<CR>")
+vim.keymap.set("n", "<M-b>", "<cmd>LspOverloadsSignature<CR>")
+vim.keymap.set("i", "<M-b>", "<cmd>LspOverloadsSignature<CR>")
 
 vim.keymap.set("n", "<M-n>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-m>", "<cmd>cprev<CR>zz")
@@ -78,11 +80,13 @@ vim.keymap.set("n", "<M-u>", "<C-u>zz")
 vim.keymap.set("n", "<M-i>", "<C-i>")
 vim.keymap.set("n", "<M-o>", "<C-o>")
 vim.keymap.set("n", "<M-p>", "<C-w>")
+vim.keymap.set("n", "<M-]>", "<C-]>")
 vim.keymap.set("i", "<M-]>", function()
     local cmp = require("cmp")
     cmp.select_next_item()
     cmp.complete()
 end)
+vim.keymap.set("n", "<M-s>", "<cmd>w<CR>")
 vim.keymap.set("n", "<M-d>", "<C-d>zz")
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
