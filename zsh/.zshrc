@@ -130,6 +130,7 @@ export PATH="$PATH:$HOME/.local/bin"
 
 export HISTFILE="$XDG_DATA_HOME/zsh/.zsh_history"
 unsetopt HIST_IGNORE_DUPS
+setopt HIST_FIND_NO_DUPS
 SAVEHIST=1000000
 
 export LESSHISTFILE="$XDG_DATA_HOME/less/.lesshst"
