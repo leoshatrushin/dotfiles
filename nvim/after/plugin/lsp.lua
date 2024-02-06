@@ -45,6 +45,7 @@ local clangd_bin = 'clangd'
 local ESP_dirs = {
     [vim.fn.expand('$HOME') .. '/dev/EnergyGraphs'] = true,
     [vim.fn.expand('$HOME') .. '/dev/EnergyMonitor/esp'] = true,
+    [vim.fn.expand('$HOME') .. '/dev/AirconButton/esp'] = true,
 }
 local esp_dir = vim.fn.expand('$HOME') .. '/esp'
 if ESP_dirs[vim.fn.getcwd()] or string.sub(vim.fn.getcwd(), 1, string.len(esp_dir)) == esp_dir then
