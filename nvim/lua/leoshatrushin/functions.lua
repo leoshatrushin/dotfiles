@@ -86,9 +86,22 @@ function M.smartRun()
         cmd = "lua " .. vim.fn.expand("%")
     elseif filetype == "python" then
         cmd = "python3 " .. vim.fn.expand("%")
-	elseif filetype == "java" then
-		cmd = "javac " .. vim.fn.expand("%") .. "&& java " .. vim.fn.expand("%:r")
+    elseif filetype == "java" then
+        -- Get the full path of the current file
+        local fullpath = vim.fn.expand("%:p")
+        -- Extract the root directory name (assumed to be the parent of 'src')
+        local rootdirname = fullpath:match("(.+)/src/.+%.java$")
+        -- Define the output directory based on the root directory name
+        local outdir = rootdirname .. "/out/production/" .. rootdirname:match(".+/(.+)$")
+        -- Compile the Java file, specifying the output directory
+        local compile_cmd = "javac -d " .. outdir .. " " .. fullpath
+        -- Run the compiled Java program
+        -- Note: This assumes no package structure. If there's a package, you need to prepend it to the class name
+        local run_cmd = "java -cp " .. outdir .. " " .. vim.fn.expand("%:t:r")
+        -- Combine compile and run commands
+        cmd = compile_cmd .. " && " .. run_cmd
     end
+
     cmd = cmd .. redirect
     local output = vim.fn.system(cmd)
     if string.sub(output, #output, #output) == "\n" then

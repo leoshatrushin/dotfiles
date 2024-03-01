@@ -116,7 +116,7 @@ if [[ -n $KITTY_INSTALLATION_DIR ]]; then
     unfunction kitty-integration
 fi
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+export JAVA_HOME=~/Library/Java/JavaVirtualMachines/openjdk-21.0.2/Contents/Home
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH=$PATH:/Users/leoshatrushin/Library/Python/3.9/bin

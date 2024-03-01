@@ -38,6 +38,8 @@ alt - o : yabai -m window --focus north
 # space focus and creation
 # cmd - 0x2B : yabai -m space --focus prev || yabai -m space --focus last
 # cmd - 0x2F : yabai -m space --focus next || yabai -m space --focus first
+# cmd - 1 : yabai -m space --focus prev || yabai -m space --focus last
+# cmd - 2 : yabai -m space --focus next || yabai -m space --focus first
 # cmd - tab : yabai -m space --focus recent
 # cmd - 1 : yabai -m space --focus 1
 # cmd - 2 : yabai -m space --focus 2
