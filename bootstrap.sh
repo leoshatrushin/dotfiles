@@ -4,6 +4,15 @@
 sudo apt install zsh
 chsh -s `which zsh`
 
+# Setup zshrc
+if [ "$1" == "remote" ]; then
+    ZDOTDIR=~/.config/zshremote
+else
+    ZDOTDIR=~/.config/zsh
+    touch ~/.hushlogin
+fi
+mv "$ZDOTDIR"/.zshenv ~/.zshenv
+
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
