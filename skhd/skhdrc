@@ -12,7 +12,7 @@ alt + ctrl - c : mv ~/Desktop/* ~/.Trash/
 
 # === Launch commands ===
 cmd + shift - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
-cmd - return : open -na 'Google Chrome' --args --profile-directory='Default' --new-window
+#cmd - return : open -na 'Google Chrome' --args --profile-directory='Default' --new-window
 ralt - d : \
     /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~ nvim .TODO
 

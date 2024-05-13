@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Update
+sudo apt update && sudo apt upgrade
+
+# Setup xterm-kitty
+tic -xe xterm-kitty ~/.config/xterm-kitty.terminfo
+
 # Install zsh
 sudo apt install zsh
 chsh -s `which zsh`

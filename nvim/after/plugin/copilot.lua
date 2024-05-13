@@ -1,3 +1,3 @@
-vim.g.copilot_filetypes = {
-    rust = false
-}
+-- vim.g.copilot_filetypes = {
+--     rust = false
+-- }

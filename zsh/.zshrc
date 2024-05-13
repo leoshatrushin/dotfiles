@@ -117,6 +117,7 @@ if [[ -n $KITTY_INSTALLATION_DIR ]]; then
 fi
 
 export JAVA_HOME=~/Library/Java/JavaVirtualMachines/openjdk-21.0.2/Contents/Home
+export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH=$PATH:/Users/leoshatrushin/Library/Python/3.9/bin
@@ -129,6 +130,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH="$PATH:$HOME/.local/bin"
 
 export HISTFILE="$XDG_DATA_HOME/zsh/.zsh_history"
+#unsetopt SHARE_HISTORY
 unsetopt HIST_IGNORE_DUPS
 setopt HIST_FIND_NO_DUPS
 SAVEHIST=1000000

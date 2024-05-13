@@ -27,6 +27,11 @@ require('lspconfig').yamlls.setup {
     },
   },
 }
+
+local current_classpath = vim.fn.getenv("CLASSPATH")
+if current_classpath and current_classpath ~= vim.NIL then
+    current_classpath = "./lib/mojo/parse" .. current_classpath
+end
 require('lspconfig').jdtls.setup{
     root_dir = function()
         return vim.fn.getcwd()
