@@ -112,7 +112,7 @@
                         ]
                     },
                     {
-                        "description": "Change rshift to down arrow and lshift+rshift to up arrow",
+                        "description": "Change rshift/lshift+rshift to down/up arrow when not in kitty and up/down arrow when in kitty",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -286,7 +286,7 @@
                         ]
                     },
                     {
-                        "description": "Change ctrl+i,j to ctrl+shift+i,j",
+                        "description": "Change ctrl+i,j -> ctrl+shift+i,j to distinguish from control sequences",
                         "manipulators": [
                             {
                                 "from": {
@@ -324,35 +324,6 @@
                                             "fn",
                                             "left_shift"
                                         ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Command+W to close in Zathura",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "bundle_identifiers": [
-                                            "^org.pwmt.zathura$"
-                                        ],
-                                        "type": "frontmost_application_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "w",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "command"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "q"
                                     }
                                 ],
                                 "type": "basic"

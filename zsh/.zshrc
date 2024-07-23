@@ -109,6 +109,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# kitty shell integration
 if [[ -n $KITTY_INSTALLATION_DIR ]]; then
     export KITTY_SHELL_INTEGRATION="enabled"
     autoload -Uz -- "$KITTY_INSTALLATION_DIR"/shell-integration/zsh/kitty-integration
@@ -117,17 +118,15 @@ if [[ -n $KITTY_INSTALLATION_DIR ]]; then
 fi
 
 export JAVA_HOME=~/Library/Java/JavaVirtualMachines/openjdk-21.0.2/Contents/Home
-export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
-export PATH=$PATH:/Users/leoshatrushin/Library/Python/3.9/bin
-export PATH=$PATH:$HOME/go/bin
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/opt/cross/bin"
 
 export HISTFILE="$XDG_DATA_HOME/zsh/.zsh_history"
 #unsetopt SHARE_HISTORY
@@ -150,12 +149,12 @@ tmux_new_window_with_nvim() {
 zle -N tmux_new_window_with_nvim
 
 set -o vi
-bindkey "^R" history-incremental-pattern-search-backward
+# bindkey "^R" history-incremental-pattern-search-backward
 bindkey '^[[93;9u' autosuggest-accept # kitty cmd+]
 bindkey '^[]' autosuggest-accept # tmux cmd+] https://github.com/tmux/tmux/issues/3335 is fixed
 bindkey '^[[107;9u' clear-screen # kitty cmd+k
 bindkey '^[k' clear-screen # tmux cmd+k
-bindkey '^[[110;9u' tmux_new_window_with_nvim # kitty cmd+n
+#bindkey '^[[110;9u' tmux_new_window_with_nvim # kitty cmd+n
 bindkey '^[n' tmux_new_window_with_nvim # tmux cmd+n
 bindkey -s '^[[102;9u' 'tmux-sessionizer\n' # kitty cmd+f
 

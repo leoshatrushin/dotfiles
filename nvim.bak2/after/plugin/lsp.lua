@@ -149,7 +149,7 @@ cmp.setup({
       -- ['<C-b>'] = cmp_action.luasnip_jump_backward(),
 
       ['<M-[>'] = cmp.mapping.select_prev_item(),
-      -- ['<M-]>'] = cmp.mapping.select_next_item(),
+      ['<M-]>'] = cmp.mapping.select_next_item(),
 
       ['<C-q>'] = cmp.mapping.abort(),
     }),

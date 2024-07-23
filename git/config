@@ -5,3 +5,8 @@
 	email = leoshatrushin@gmail.com
 [http]
 	postBuffer = 524288000
+[alias]
+    # Thanks r00k, this creates a pretty graph view of the log
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+[merge]
+	conflictstyle = diff3

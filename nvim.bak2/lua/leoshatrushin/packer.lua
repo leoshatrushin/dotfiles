@@ -52,7 +52,7 @@ return require('packer').startup(function(use)
     -- use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
     use {'github/copilot.vim'}
 
-    use('tpope/vim-commentary')
+    use('numToStr/Comment.nvim')
     use('jose-elias-alvarez/null-ls.nvim')
     use('MunifTanjim/prettier.nvim')
     use('tpope/vim-eunuch')
@@ -84,5 +84,6 @@ return require('packer').startup(function(use)
 	use('prisma/vim-prisma')
 
 	use('chrisbra/Colorizer')
+    use('tikhomirov/vim-glsl')
 end)
 

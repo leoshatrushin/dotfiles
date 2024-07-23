@@ -15,8 +15,8 @@ vim.opt.wrap = true
 vim.opt.swapfile = false
 vim.opt.backup = false
 local cache_home = vim.fn.getenv("XDG_CACHE_HOME")
-if cache_home == vim.NIL or cache_home == '' then
-    cache_home = vim.fn.expand("$HOME/.cache")
+if cache_home == vim.NIL or cache_home == "" then
+	cache_home = vim.fn.expand("$HOME/.cache")
 end
 vim.opt.undodir = cache_home .. "/nvim/undodir"
 vim.opt.undofile = true -- persistent undo
@@ -33,8 +33,8 @@ vim.opt.isfname:append("@-@") -- allow @ in filenames
 
 vim.opt.updatetime = 50 -- trigger idle events after 50ms
 
-vim.opt.colorcolumn = "120" -- 80 char ruler
+vim.opt.colorcolumn = "120" -- ruler column
 
-vim.opt.inccommand = "nosplit" -- live preview of :s
+vim.opt.inccommand = "split" -- live preview of :s
 
 vim.o.mouse = "a" -- enable mouse support
