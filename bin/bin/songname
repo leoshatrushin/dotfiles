@@ -1,0 +1,176 @@
+#!/usr/bin/env node
+
+const CDP = require('chrome-remote-interface');
+
+const seconds = [0, 126, 214, 357, 462, 564, 654, 769, 906, 1024, 1134, 1253, 1385, 1456, 1609, 1748, 1869, 2024, 2194, 2304, 2432, 2529, 2670, 2867, 2999, 3130, 3249, 3363, 3454, 3567, 3720, 3846, 3941, 4067, 4159, 4298, 4491, 4590, 4749, 4867, 4953, 5047, 5162, 5297, 5407, 5569, 5707, 5838, 5928, 6054, 6171, 6344, 6610, 6835, 7108, 7387, 7472, 7629, 7871, 8004, 8125, 8278, 8372, 8555, 8677, 8815, 8998, 9104, 9210, 9333, 9472, 9627, 9796, 10260, 10402, 10681, 10944, 11205, 11662, 11871, 11975, 12171, 12257, 12428, 12850, 13016, 13233, 13486, 13622, 13821, 14053, 14226, 14443, 14645, 14795, 14997, 15213, 15527, 15702, 15832, 16152, 16400, 16655, 16865, 17058, 17245, 17459, 17674, 17830, 18080, 18237, 18437, 18600, 18859];
+
+const names = [
+"Made in Abyss",
+"Roar of the Abyss",
+"Beni-Kuchi-Nawa",
+"Days in the Sun",
+"Rafters",
+"Treehouse",
+"New World",
+"To the Abyss!",
+"Underground River (opening version ft.Raj Ramayya)",
+"Maul",
+"Walking the Streets",
+"Remembering Home",
+"Those Everyday Feels",
+"2 Months",
+"Reg Wakes",
+"Theme of Reg",
+"Gallantry and Recapitulation",
+"Riko's Theme",
+"Swings and Roundabouts",
+"Tasukete",
+"Air",
+"Welcome to my World",
+"Hanezeve Caradhina (ft.Takeshi Saito)",
+"Depths of the Abyss",
+"Forest of the Abyss",
+"Butterfly Atmospheres",
+"The First Layer",
+"Abyss of the Sea",
+"Orth Waltz",
+"Jungle Run",
+"Crucifixion",
+"Serphent Call",
+"Outside",
+"Forces Beyond Control",
+"Nanachi in the Dark",
+"Underground River (ft.Raj Ramayya)",
+"Walking the Tightrope",
+"Relinquish",
+"Tour the Abyss",
+"Adventure Through the Light",
+"Classroom",
+"Reg's Power",
+"In the Blind",
+"The Pit",
+"Discover the Abyss",
+"Vista",
+"Mirage",
+"Indoor Voices",
+"Nanachi in the Light",
+"Saber-tooth",
+"Pathway",
+"Tomorrow",
+"Echos",
+"Faith",
+"reBirth (ft. Takeshi Saito)",
+"Field of Eternal Fortunes",
+"Encounter the Umbra Hands",
+"Prayer and Immolation",
+"The Return of Made in Abyss",
+"Riko's Cooking",
+"The Fourth Layer",
+"The Girl with Curly Green Hair",
+"Papa's Lullaby",
+"The Former Child of Ido Front",
+"Stairway to the Fifth",
+"Narehate and the Machine",
+"The Intimate Chair",
+"Quartet for Broken Arms",
+"reBirth; Arranged",
+"Stringerhead Nest",
+"Ambience from a Sea of Corpses",
+"Water Sanctum",
+"Transcendance and Hanezeve",
+"Stone Fish",
+"Post-op Meinya",
+"Dark Reg, Nightmare Fuel",
+"The Rumble of Scientific Triumph",
+"Prushka Sequence",
+"Tozo Hanoline (ft. Uyanga Bold)",
+"You talk too much",
+"Cartridge Tears  become the White Whistle",
+"Finale",
+"Tomorrowland ",
+"Old Stories ",
+"Mallets of Abyss ",
+"Segur ",
+"DANCE : nArEhAtE ",
+"Ryusazai ",
+"Eyes of Irumyuui ",
+"The Golden City ",
+"Mori ",
+"Princess & the Village ",
+"Ouni ",
+"I. AM. BURNING. MAN ",
+"Tori x Onkyo ",
+"Vueko ",
+"Gravity (ft.Arnor Dan)",
+"Reg & his Interference Unit ",
+"Carnival! Praise to Princess ",
+"Juroimoh Mutation ",
+"BIRD_(n); CAGE. for Strings, Organs & Winds ",
+"Radio Requiem ",
+"Faputa ",
+"The Village ",
+"Drums of Ganja-Tai ",
+"Market of IRUburu ",
+"SAN-KEN「The Three SAGES」",
+"Nature Sequence. 6th Layer. ",
+"vs. Organic Machine ",
+"Capital of the Unreturned ",
+"ベラフの子守歌 (Belaf's Lullaby) ",
+"Ningyo x 龍 ",
+"Counterpoint of Abyss ",
+"VOH (ft.Takeshi Saito)"]
+
+async function findYouTubeTabAndGetCurrentTime() {
+    let client;
+
+    try {
+        // Connect to the Chrome instance with debugging port 9222
+        client = await CDP({ port: 9222 });
+
+        // Get the list of targets (tabs)
+        const { Target } = client;
+        const targets = await Target.getTargets();
+
+        // Iterate through all the targets (tabs)
+        for (const target of targets.targetInfos) {
+            if (target.url.includes('youtube.com')) {
+                // Attach to the YouTube tab
+                const { targetId } = target;
+                await Target.attachToTarget({ targetId });
+
+                // Enable the Runtime domain
+                const { Runtime } = client;
+                await Runtime.enable();
+
+                // Evaluate JavaScript code in the YouTube tab to get the current time
+                const { result } = await Runtime.evaluate({
+                    expression: 'document.querySelector("video").currentTime',
+                });
+
+                // Print song
+                let index = seconds.findIndex((element) => element >= result.value);
+                if (index == -1) {
+                    console.log("Song not found");
+                } else {
+                    console.log(names[index - 1]);
+                }
+
+                // Detach from the YouTube tab
+                await Target.detachFromTarget({ targetId });
+                break; // Exit the loop since we found a YouTube tab
+            }
+        }
+
+        if (!targets.targetInfos.some((target) => target.url.includes('youtube.com'))) {
+            console.log('No YouTube tab found.');
+        }
+    } catch (err) {
+        console.error('Error:', err);
+    } finally {
+        if (client) {
+            await client.close();
+        }
+    }
+}
+
+findYouTubeTabAndGetCurrentTime();

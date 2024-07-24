@@ -1,0 +1,4 @@
+cd ~/.config
+mv nvim.bak nvim.bakUNIQUE
+mv nvim nvim.bak
+mv nvim.bakUNIQUE nvim

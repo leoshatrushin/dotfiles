@@ -1,0 +1,21 @@
+#!/bin/bash
+
+languages=$(echo "golang c cpp typescript rust lua javascript python bash" | tr " " "\n")
+core_utils=$(echo "find xargs sed awk tr jq uniq sort echo cat grep ls" | tr " " "\n")
+
+selected=$(echo -e "$languages\n$core_utils\nCUSTOM" | fzf)
+
+read -p "GIMMIE YOUR QUERY: " query
+
+style="monokai"
+
+if echo "$languages" | grep -qs "$selected"; then
+    tmux new-window \
+        "curl -s 'cht.sh/$selected/$(echo "$query" | tr " " "+")?style=$style' | less"
+elif echo "$core_utils" | grep -qs "$selected"; then
+    tmux new-window \
+        "curl -s 'cht.sh/$selected~$query?style=$style' | less"
+else
+    tmux new-window \
+        "curl -s 'cht.sh/$query?style=$style' | less"
+fi
