@@ -59,6 +59,12 @@ yabai -m rule --add label="Software Update" title="Software Update" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
 yabai -m rule --add label="HHKB" app="HHKB Keymap Tool" title="About This Mac" manage=off
 yabai -m rule --add title="^Maze$" manage=off
+JB_Apps='^(CLion|PyCharm|IntelliJ IDEA)$'
+yabai -m rule --add app="${JB_Apps}" manage=off
+# If `Open last project when launch` is checked, add this rule. And make sure `always show project path` is also checked.
+yabai -m rule --add app="${JB_Apps}" title=".*\[.*\].*" manage=on 
+yabai -m rule --add app="${JB_Apps}" title="^$"  manage=on
+yabai -m rule --add title="intellij-popup" manage=off grid=10:3:1:1:1:8
 
 # ===== Signals ================================
 

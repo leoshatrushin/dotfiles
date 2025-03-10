@@ -108,6 +108,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias make=gmake
+alias ls='eza'
 
 # kitty shell integration
 if [[ -n $KITTY_INSTALLATION_DIR ]]; then
@@ -119,7 +121,7 @@ fi
 
 export JAVA_HOME=~/Library/Java/JavaVirtualMachines/openjdk-21.0.2/Contents/Home
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
@@ -127,6 +129,8 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/opt/cross/bin"
+
+export PATH="$PATH:/Applications/IntelliJ IDEA.app/Contents/MacOS"
 
 export HISTFILE="$XDG_DATA_HOME/zsh/.zsh_history"
 #unsetopt SHARE_HISTORY
@@ -192,3 +196,7 @@ npx() {
 }
 
 print -n '\033[5 q' # blink cursor
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
