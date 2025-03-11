@@ -1,0 +1,143 @@
+let following = open following.csv | get column2
+let following = open following.csv | get 2
+cat following
+following
+echo $following
+let following = open following.csv | get UserScreenName
+let following = open following.csv | get username
+let following = open following.csv | get column2
+let following = open following.csv | get 2
+echo $following
+let following = open following.csv | get 1
+echo $following
+let following = open following.csv | select 2
+echo $following
+let following = open following.csv | select username
+let following = open following.csv | get username
+let following = open following.csv | columns
+echo $following
+open following.csv | get 1
+open following.csv | get username
+open following.csv | flatten | get username
+open following.csv | get [*].username
+open following.csv | each { |item| $item.username }
+open following.csv | select username
+let following = open following.csv | select username
+open following.csv | select 2
+open following.csv | get 2
+open following.csv | select username
+open favourites.csv | get UserScreenName | filter { $in in $following } | uniq --count
+open favourites.csv | get UserScreenName
+echo $following
+open favourites.csv | get UserScreenName | filter { $in in $following }
+let following = open following.csv | get username
+open following.csv | get username
+let following = open following.csv | get username
+open favourites.csv | get UserScreenName | filter { $in in $following } | uniq --count
+open favourites.csv | get UserScreenName | filter { $in in $following } | uniq --count | sort
+open favourites.csv | get UserScreenName | filter { $in in $following } | uniq --count | sort-by count
+ls
+mv Downloads/favourites.csv misc/twitter
+$nu.env-path
+$nu.config-path
+ls
+cd misc/twitter
+ls
+clear
+ls
+mkdir 15_12_24
+mv favourites.csv 15_12_24
+cd 15_12_24
+open favourites.csv | get UserScreenName | uniq --count
+open favourites.csv | get UserScreenName | uniq --count --reverse
+open favourites.csv | get UserScreenName | uniq --count
+open favourites.csv | get UserScreenName | uniq --count | sort-by count
+cd misc/twitter
+ls
+cd 15_12_24/
+ls
+open favourites.csv | get UserScreenName | uniq --count | sort-by count
+open favourites.csv | get UserScreenName | uniq --count | sort-by count --reverse
+open favourites.csv | get UserScreenName | uniq --count | sort-by count --reverse | head
+open favourites.csv | get UserScreenName | uniq --count | sort-by count --reverse | head -n100
+ls
+ls | sort-by size
+clear
+^ps
+ps
+clear
+ls | describe
+^ls
+ls -l
+ls -l | describe
+ls | select size
+ls
+ls | select mode
+ls -l | select mode
+ls | get size
+ls | select size
+help
+clear
+ls
+clear
+ls
+clear
+ls
+lllllll
+clear
+llll
+clear
+help -f filesize
+help commands
+clear
+help commands | explore
+$env.config | explore
+cd textbooks/
+ls
+cd theory-of-languages/
+ls
+^open `Programming Language Pragmatics Supplementary Sections v4.pdf`
+open `Programming Language Pragmatics Supplementary Sections v4.pdf`
+^open `Programming Language Pragmatics Supplementary Sections v4.pdf`
+cd ..
+ls
+cd -
+ls
+clear
+ls **/*.epob
+ls **/*.epub
+ls **/*.epub | each { |it|<\n>let stem = (echo $it.name | str trim-suffix '.epub')<\n>ebook-convert $it.path ("PDFVER ${stem}.pdf")<\n>}
+ls **/*.epub | each { |it|<\n>ebook-convert $it.path ("PDFVER ${it.path.file_stem}.pdf")<\n>}
+ls **/*.epub
+ls *.epub
+exit
+ls */**.epub
+ls **/*.epub
+exit
+➜  index git:(main) ✗ curl --request GET \<\n>  --url https://api.nango.dev/records\?model\=LinearProject\&limit\=10000 \<\n>  --header 'Authorization: Bearer c9c6606f-16c8-4a39-b1e6-cfd99a828a71' \<\n>  --header 'Connection-Id: 2786'--header 'Provider-Config-Key: linear'
+curl --request GET \
+set -o vi
+exit
+curl https://api.brandfetch.io/v2/search/brandfetch.com
+curl https://api.brandfetch.io/v2/search/brandfetch.com | from json
+curl https://api.brandfetch.io/v2/search/cin-cin | from json
+curl https://api.brandfetch.io/v2/search/cin-cin | from json | to json
+curl https://api.brandfetch.io/v2/search/ccintel | from json | to json
+curl --request GET \<\n>  --url https://api.nango.dev/records\?model\=LinearProject\&limit\=10000 \<\n>  --header 'Authorization: Bearer c9c6606f-16c8-4a39-b1e6-cfd99a828a71' \<\n>  --header 'Connection-Id: 649' \<\n>  --header 'Provider-Config-Key: linear' | tr '}' '\n'<\n>
+clear
+ls
+clear
+cd textbooks/
+ls
+ls **/*
+clear
+ls **/*
+ls **/* | get path
+ls **/*
+clear
+exit
+curl https://api.brandfetch.io/v2/search/brandfetch.com<\n>
+curl https://api.brandfetch.io/v2/search/brandfetch.com | from json
+curl https://api.brandfetch.io/v2/search/index | from json
+clear
+exit

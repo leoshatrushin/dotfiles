@@ -35,6 +35,7 @@ source $ITEM_DIR/cpu.sh
 source $ITEM_DIR/vpn.sh
 source $ITEM_DIR/wifi.sh
 source $ITEM_DIR/darkside.sh
+source $ITEM_DIR/volume.sh
 
 
 sketchybar --update

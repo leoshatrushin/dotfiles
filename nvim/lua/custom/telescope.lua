@@ -20,6 +20,11 @@
 local actions = require("telescope.actions")
 local data = assert(vim.fn.stdpath("data")) --[[@as string]]
 
+local function quickfix_select(prompt_bufnr)
+    actions.send_selected_to_qflist(prompt_bufnr)
+    vim.cmd("copen")  -- Opens the quickfix window
+end
+
 require("telescope").setup({
     --  All the info you're looking for is in `:help telescope.setup()`
     defaults = {
@@ -28,7 +33,11 @@ require("telescope").setup({
                 ["<c-enter>"] = "to_fuzzy_refine",
                 ["<M-p>"] = actions.move_selection_previous,
                 ["<M-n>"] = actions.move_selection_next,
+                ["<C-q>"] = quickfix_select,
             },
+            n = {
+                ["<C-q>"] = quickfix_select,
+            }
         },
     },
     pickers = {},
@@ -49,9 +58,42 @@ pcall(require("telescope").load_extension, "fzf")
 pcall(require("telescope").load_extension, "smart_history")
 pcall(require("telescope").load_extension, "ui-select")
 
+local find_command = {
+    "rg",
+    "--files",
+    "--hidden",
+    "--follow",
+    "--no-ignore-vcs",
+}
+
+local vimgrep_arguments = {
+    "rg",
+    "--color=never",
+    "--no-heading",
+    "--with-filename",
+    "--line-number",
+    "--column",
+    "--smart-case",
+    "--no-ignore-vcs"
+}
+
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>sd", builtin.find_files)
-vim.keymap.set("n", "<leader>ss", builtin.live_grep)
+vim.keymap.set("n", "<leader>sd", function()
+    builtin.find_files({
+        find_command = find_command,
+    })
+end)
+vim.keymap.set("n", "<leader>ss", function()
+    builtin.live_grep({
+        vimgrep_arguments = vimgrep_arguments,
+    })
+end)
+vim.keymap.set('n', 'gs', function()
+    builtin.live_grep({
+        vimgrep_arguments = vimgrep_arguments,
+        default_text = vim.fn.expand('<cword>')
+    })
+end)
 vim.keymap.set("n", "<leader>sb", function()
     builtin.current_buffer_fuzzy_find({ fuzzy = false, case_mode = "ignore_case" })
 end)

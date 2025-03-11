@@ -55,7 +55,7 @@ return {
                     end
 
                     if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-                        vim.keymap.set("n", "<leader>th", function()
+                        vim.keymap.set("n", "<leader>yh", function()
                             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
                         end, { buffer = 0, desc = "LSP: [T]oggle Inlay [H]ints" })
                     end
@@ -128,7 +128,10 @@ return {
                             },
                         },
                     },
-                }
+                },
+                kotlin_language_server = {
+                    root_dir = function() return "/Users/leoshatrushin/dev/experiments" end,
+                },
                 -- https://github.com/pmizio/typescript-tools.nvim?
             }
 

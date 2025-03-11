@@ -52,7 +52,7 @@ return {
     "tpope/vim-sleuth", -- detect tabstop and shiftwidth automatically
     "tpope/vim-fugitive", -- git plugin
     "github/copilot.vim",
-    "mattn/emmet-vim", -- htlm:5
+    "mattn/emmet-vim", -- html:5
     { "windwp/nvim-autopairs", event = "InsertEnter", config = true },
     -- "windwp/nvim-ts-autotag", -- auto close html tags
     { -- gx to open url
@@ -74,6 +74,20 @@ return {
             "MunifTanjim/nui.nvim",
             -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         },
+    },
+    {
+        "3rd/image.nvim",
+        event = "VeryLazy",
+        opts = {},
+    },
+    {
+--        'boganworld/crackboard.nvim',
+--        dependencies = { 'nvim-lua/plenary.nvim' },
+--        config = function()
+--            require('crackboard').setup({
+--                session_key = 'c7c595ca6ef9693709b3fd0ec94ebe237490285079c9fff99f8e689852b446cb',
+--            })
+--        end,
     },
     --"prisma/vim-prisma",
     --{'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}

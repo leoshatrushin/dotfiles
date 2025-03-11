@@ -18,8 +18,8 @@ M.Editing = {
 }
 
 M.Navigation = {
-    { { "n", "v" }, "H", "^", { desc = "Move to end of line" } },
-    { { "n", "v" }, "L", "$", { desc = "Move to start of line" } },
+    { { "n", "v", "o" }, "H", "^", { desc = "Move to end of line" } },
+    { { "n", "v", "o" }, "L", "$", { desc = "Move to start of line" } },
     { "n", "<leader>eo", vim.diagnostic.open_float, { desc = "[O]pen diagnostic [E]rror messages" } },
     { "n", "<leader>ec", '<cmd>lua require("helpers").copy_diagnostic_to_clipboard()<CR>' },
     { "n", "n", "nzzzv", { desc = "Re-center and open any folds on [n]ext" } },
@@ -27,7 +27,7 @@ M.Navigation = {
     { "n", "<M-u>", "<C-u>zz", { desc = "Re-center on page up" } },
     { "n", "<M-d>", "<C-d>zz", { desc = "Re-center on page down" } },
     { "n", "<M-n>", "<cmd>cnext<CR>zz" },
-    { "n", "<M-m>", "<cmd>cprev<CR>zz" },
+    { "n", "<C-S-m>", "<cmd>cprev<CR>zz" },
     { "n", "<M-i>", "<C-i>" },
     { "n", "<M-o>", "<C-o>" },
     { "n", "<M-p>", "<C-w>" },
@@ -38,7 +38,7 @@ M.Helpers = {
     { "n", "<leader>o", "<cmd>e ~/.local/state/nvim/run.out<CR>" },
     { "n", "<leader>c", "<cmd>silent !cat ~/.local/state/nvim/run.out | pbcopy<CR>" },
     { "n", "<leader>x", "<cmd>silent !chmod +x %<CR>" },
-    { "n", "<leader>g", "<cmd>G<CR>" },
+    { "n", "<leader>i", "<cmd>G<CR>" },
     { "n", "<leader>l", "<cmd>G log<CR>" },
     { "n", "<leader><CR>", "<cmd>source %<CR>" },
     { "n", "<leader>q", "<cmd>lua require('helpers').smart_quit()<CR>" },

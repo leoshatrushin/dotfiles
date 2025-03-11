@@ -15,6 +15,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     })
 end
 
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
+
 require("lazy").setup("custom/plugins", {
     change_detection = {
         notify = false, -- autorealod on change, transparently
